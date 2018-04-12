@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %} {{catename.Location_name}} {% endblock %}
+{% block right-content %}
+    <div class="show-top-grids">
+        <div class="col-sm-10 show-grid-left main-grids">
+            <div class="recommended">
+                <div class="">
+                    <div class="recommended-info">
+                        <div class="heading">
+                            <h3>{{ catename }}</h3>
+                        </div>
+                        <div class="heading-right">
+                            <a href="#small-dialog8" class="play-icon popup-with-zoom-anim">订阅</a>
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+                    {% if cate_brand_list %}
+                    {% for item in cate_brand_list %}
+                    <div class="col-md-3 resent-grid recommended-grid movie-video-grid">
+                        <div class="resent-grid-img recommended-grid-img">
+                            <a href="{% url 'BrandDetail' item.id %}"><img src="/media/{{item.img}}" alt="" /></a>
+                        </div>
+                        <div class="resent-grid-info recommended-grid-info recommended-grid-movie-info">
+                            <h5>
+                                <a href="single.html" class="title">{{item.name}}</a>
+                                 <!--<p class="views views-info">{{item.views}} 观看</p>-->
+                            </h5>
+                            <ul>
+
+                            </ul>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+            </div>
+        </div>
+        <div class="col-md-2 show-grid-right">
+            <h3>子分类</h3>
+            {% if subcate %}
+            {% for i in subcate %}
+            <div class="show-right-grids">
+                <ul>
+                    <li class="tv-img"><a href="#"><img src="images/mv.png" alt="" /></a></li>
+                    <li><a href="#">English Movies</a></li>
+                </ul>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+{% endblock right-content %}

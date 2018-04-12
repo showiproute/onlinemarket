@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %} {{brand.name}} {% endblock %}
+{% block right-content %}
+<div class="show-top-grids">
+    <div class="col-sm-8 single-left">
+        <div class="song">
+            <div class="song-info">
+                <h3>{{ brand.name }}</h3>    
+        </div>
+            <div class="video-grid">
+                <!-- <iframe src="http://player.youku.com/player.php/sid/XMTg3Nzg4MzY4NA==/v.swf" allowfullscreen='true'></iframe> -->
+                <video width=600 src="/media/{{ brand.link }}" controls preload></video>
+            </div>
+            <div class="share">
+                <ul >
+                    <div class="col-md-4">
+                        <li style="float:left;"><a href="#" class="icon like">点赞</a></li>
+                    </div>
+                    <div class="col-md-4">
+                        <li style="float:left;"><a href="#" class="icon comment-icon">评论</a></li>
+                    </div>
+                    <div class="col-md-4">
+                        <li class="view" style="float:left;">{{brand.views}} 次观看</li>
+                    </div>
+                </ul>
+            </div>
+        </div>
+        <div class="clearfix"> </div>
+        <div class="published row">
+            <div class="col-md-6">
+                <h4>发布于：{{brand.create_date}}</h4>
+                <p>{{brand.introduce}}</p>
+            </div>
+            <div class="col-md-6">
+                <h4>地址分类在：</h4>
+                <a href="{% url 'LocationCate' brand.location_cate.id %}">{{ brand.location_cate.Location_name }}</a>
+            </div>
+        </div>
+        <!-- 评论 -->
+        <div class="all-comments">
+        </div>
+    </div>
+
+    <!-- 相关推荐 -->
+    <div class="col-md-4 single-right">
+        <h3>教程专辑</h3>
+        <div class="single-grid-right">
+            <!-- 存在专辑 -->
+            <div class="single-right-grids">
+                <div class="col-md-4 single-right-grid-left">
+                </div>
+                <div class="col-md-8 single-right-grid-right">
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+            <!-- 随机推荐 -->
+	    {% if rand_brand %}
+            {% for item in rand_brand %}
+            <div class="single-right-grids">
+                <div class="col-md-4 single-right-grid-left">
+                    <a href="{% url 'BrandDetail' item.brand.id %}"><img src="images/r1.jpg" alt="" /></a>
+                </div>
+                <div class="col-md-8 single-right-grid-right">
+                    <a href="{% url 'BrandDetail' item.brand.id %}" class="title"> {{item.name}}</a>
+                    <p class="author"><a href="#" class="author">John Maniya</a></p>
+                    <p class="views">{{item.views}} views</p>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+    <div class="clearfix"> </div>
+</div>
+{% endblock right-content %}

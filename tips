@@ -1,0 +1,5 @@
+Views： 首页 目录（校区分类） 产品分类  用户登陆 用户注册
+Models: 校区数据表 产品数据表 标签数据表 点赞数据表 浏览记录数据表 
+create database online_Market default character set utf8 collate utf8_general_ci;
+uwsgi --ini /root/django_env/online_Market/market_uwsgi.ini
+
