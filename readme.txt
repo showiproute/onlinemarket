@@ -1,0 +1,6 @@
+这是一个用python的django框架编写的二手商品交易网站
+前端框架用的bootstrap
+数据库用的Mysql
+web服务器用的nginx
+
+
